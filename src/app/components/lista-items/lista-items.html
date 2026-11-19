@@ -1,0 +1,51 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h2 class="h5 card-title mb-3">Nuevo registro</h2>
+
+    <!-- Puntos 8 y 9: formulario con variables de plantilla (#) que invoca agregarElemento al enviar -->
+    <form
+      class="row g-2 mb-4"
+      (ngSubmit)="agregarDesdeFormulario(inputNombre.value, inputDetalle.value); inputNombre.value = ''; inputDetalle.value = ''"
+    >
+      <div class="col-md-5">
+        <input
+          #inputNombre
+          type="text"
+          class="form-control"
+          placeholder="Nombre del ítem"
+          required
+        />
+      </div>
+
+      <div class="col-md-5">
+        <input
+          #inputDetalle
+          type="text"
+          class="form-control"
+          placeholder="Detalle o categoría"
+        />
+      </div>
+
+      <div class="col-md-2 d-grid">
+        <button type="submit" class="btn btn-primary">
+          Agregar
+        </button>
+      </div>
+    </form>
+
+    <h3 class="h6 text-muted mb-2">Elementos ({{ elementos.length }})</h3>
+
+    <!-- Punto 6: tag <ul> con <li> usando *ngFor -->
+    <ul class="list-group">
+      <li
+        *ngFor="let item of elementos; let idx = index"
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <span>
+          <strong>{{ idx + 1 }}.</strong> {{ item.nombre }}
+        </span>
+        <span class="badge bg-secondary">{{ item.detalle }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
